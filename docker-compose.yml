@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  service_1:
+    build:
+      context: ./service_1
+    container_name: service_1
+    expose:
+      - 8001
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:8001/ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  service_2:
+    build:
+      context: ./service_2
+    container_name: service_2
+    expose:
+      - 8002
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:8002/ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+  nginx:
+    build:
+      context: ./nginx
+    container_name: nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - service_1
+      - service_2
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
