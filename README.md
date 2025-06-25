@@ -146,8 +146,45 @@ Sample log:
 ##  Bonus Features
 
 - `curl` installed in both containers to enable internal health checks
-- `.dockerignore` can be added for build optimization (if extended)
 - Nginx logs include request path and timestamps
+
+---
+##  Testing the setup using Script
+
+Additionally I have created a test script to automatically validate the complete setup end-to-end.
+
+### What does the script do?
+
+- Verifies all containers are healthy using `docker ps`
+- Sends HTTP requests to both services via the Nginx reverse proxy
+- Confirms correct JSON responses from:
+  - `/ping` and `/hello` endpoints of **Service 1**
+  - `/ping` and `/hello` endpoints of **Service 2**
+- Ensures both services are running as **non-root users** by:
+  - Denying file creation in `/etc`
+  - Allowing file creation in `/app`
+
+###  How to run the script?
+
+1. **Start the services using Docker Compose:**
+
+   ```bash
+   docker-compose up -d --build
+   ```
+
+2. **Make the test script executable:**
+
+   ```bash
+   chmod +x test.sh
+   ```
+
+3. **Run the script:**
+
+   ```bash
+   ./test.sh
+   ```
+
+You will see detailed logs printed in the terminal with ✅ success or ❌ failure messages for each check. If all tests pass, your setup is verified to be production-ready and secure.
 
 ---
 

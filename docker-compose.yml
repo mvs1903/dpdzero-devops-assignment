@@ -39,6 +39,11 @@ services:
       - service_2
     networks:
       - backend
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
 networks:
   backend:
