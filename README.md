@@ -32,7 +32,7 @@ This project showcases a containerized microservices setup using Docker Compose:
 
 ## 🚀 How to Run the Project
 
-### 1. ✅ **Pre-requisites**
+### 1.  **Pre-requisites**
 
 Ensure you have the following installed:
 
@@ -41,7 +41,7 @@ Ensure you have the following installed:
 
 ---
 
-### 2. ⚙️ **Run the project**
+### 2.  **Run the project**
 
 In the root folder, execute:
 
@@ -51,7 +51,7 @@ docker-compose up --build
 
 ---
 
-### 3. 🌐 **Access the Services**
+### 3.  **Access the Services**
 
 Once containers are up:
 
@@ -65,7 +65,7 @@ Once containers are up:
 
 ---
 
-### 4. 📉 **Stop the services**
+### 4.  **Stop the services**
 
 To stop and remove containers:
 
@@ -75,7 +75,7 @@ docker-compose down --volumes
 
 ---
 
-## 🔀 Nginx Reverse Proxy
+##  Nginx Reverse Proxy
 
 Nginx runs as a container and handles all routing via path prefixes:
 
@@ -88,7 +88,7 @@ It also logs each request with timestamp and path.
 
 ---
 
-## ❤️ Health Checks
+##  Health Checks
 
 Both services include a `HEALTHCHECK` in their Dockerfiles to ensure they're running:
 
@@ -109,7 +109,7 @@ docker ps
 
 ---
 
-## 🔐 Security Best Practices
+##  Security Best Practices
 
 - Each service runs as a **non-root user (`appuser`)**
 - This prevents accidental or malicious system access inside the container
@@ -127,7 +127,7 @@ docker ps
 
 ---
 
-## 🪵 Logging
+##  Logging
 
 Logs can be viewed via:
 
@@ -143,7 +143,7 @@ Sample log:
 
 ---
 
-## 🎯 Bonus Features
+##  Bonus Features
 
 - `curl` installed in both containers to enable internal health checks
 - `.dockerignore` can be added for build optimization (if extended)
@@ -151,7 +151,7 @@ Sample log:
 
 ---
 
-## ⚠️ Important Notes
+##  Important Notes
 
 - This setup uses the Flask development server for now. For production, consider switching to **Gunicorn**.
 - Docker networking is based on the default `bridge` network.
@@ -159,9 +159,7 @@ Sample log:
 
 ---
 
-## ✅ Conclusion
+##  Conclusion
 
 This project fulfills all stated requirements with additional security, health monitoring, and modular design — following containerization best practices.
-
-Feel free to explore, test endpoints, and improve it further!
 
