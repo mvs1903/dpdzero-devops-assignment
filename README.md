@@ -61,6 +61,7 @@ Once containers are up:
 
 - Python (Flask) service:
   - http://localhost:8080/service2/ping
+  - http://localhost:8080/service2/hello
 
 ---
 
