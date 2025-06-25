@@ -6,11 +6,16 @@ WORKDIR /app
 # Copy source files
 COPY . .
 
-# Install Flask
+# Install curl as root
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
+# Install Python deps as root
 RUN pip install --no-cache-dir flask==3.1.1
 
-# Install curl for health check
-RUN apt-get update && apt-get install -y curl
+#  Add non-root user and switch
+RUN useradd -m appuser
+USER appuser
+
 
 # Expose port used by Flask app
 EXPOSE 8002

@@ -10,11 +10,16 @@ COPY main.go .
 # Init go module
 RUN go mod init service1 && go mod tidy || true
 
-# Installing  curl for healthcheck
+# Install curl before switching user
 RUN apk add --no-cache curl
 
-# Build the Go binary
+# Build as root
 RUN go build -o main .
+
+#  Create and switch to non-root user
+RUN adduser -D appuser
+USER appuser
+
 
 # Expose the internal app port
 EXPOSE 8001
